@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class SidebarService {
 
   menu: any[] = [
-
     {
       titulo: 'Marcas de Autos',
       icono: 'mdi mdi-folder-lock-open',
@@ -16,6 +15,5 @@ export class SidebarService {
       ]
     }
   ]
-
   constructor() { }
 }

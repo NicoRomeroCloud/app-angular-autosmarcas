@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 
 import { Marca } from '../models/marca';
@@ -29,7 +29,6 @@ export class MarcaService {
   updateMarca(id: number, marca: Marca): Observable<Marca> {
     return this.http.put<Marca>(`${this.baseUrl}/marcas/${id}`, marca);
   }
-
 
   deleteMarca(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/marcas/${id}`);

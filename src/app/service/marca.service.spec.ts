@@ -62,7 +62,7 @@ describe('MarcaService', () => {
     req.flush(newMarca);
   });
 
-  it('should update an existing marca by ID', () => {
+  it('should update an existin marca by ID', () => {
     const marcaId = 1;
     const updatedMarca: Marca = { id: marcaId, nombre: 'MarcaActualizada' };
 
@@ -75,7 +75,7 @@ describe('MarcaService', () => {
     req.flush(updatedMarca);
   });
 
-  it('should delete a marca by ID', () => {
+  it('should delete a marcaid by ID', () => {
     const marcaId = 1;
 
     service.deleteMarca(marcaId).subscribe(() => {

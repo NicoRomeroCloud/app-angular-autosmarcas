@@ -1,8 +1,11 @@
+// Angular
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
+// Componentes
 import { AppComponent } from './app.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -13,7 +16,6 @@ import { SidebarComponent } from './pages/sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './pages/breadcrumbs/breadcrumbs.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesComponent } from './pages/pages.component';
-import { FormsModule } from '@angular/forms';
 import { MarcaService } from './service/marca.service';
 import { AutoService } from './service/auto.service';
 

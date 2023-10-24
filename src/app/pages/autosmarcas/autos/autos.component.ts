@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import Swal from 'sweetalert2';
 
 import { Auto } from '../../../models/auto';
 import { AutoService } from 'src/app/service/auto.service';
 import { MarcaService } from 'src/app/service/marca.service';
 import { Marca } from 'src/app/models/marca';
-import Swal from 'sweetalert2';
 
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -15,7 +15,6 @@ const swalWithBootstrapButtons = Swal.mixin({
   },
   buttonsStyling: false
 });
-
 
 @Component({
   selector: 'app-autos',
@@ -28,9 +27,7 @@ export class AutosComponent implements OnInit {
   autoSeleccionado: Auto = new Auto();
   modoEdicion = false;
   marcas: Marca[] = [];
-
   sinDatos = false;
-
   editandoIndice: number | null = null;
 
   constructor(public router: Router, public autoService: AutoService, public marcaService: MarcaService) { }
@@ -77,8 +74,6 @@ export class AutosComponent implements OnInit {
     }
   }
 
-
-
   cargarAutos(): void {
     this.autoService.obtenerAutos().subscribe((autos) => {
       this.autos = autos;
@@ -108,9 +103,6 @@ export class AutosComponent implements OnInit {
         this.limpiarFormulario();
         this.editandoIndice = null;
         Swal.fire('Auto editado', `Su auto fue editado correctamente`, 'success')
-
-
-
       });
     } else {
       this.autoService.crearAuto(this.autoSeleccionado).subscribe(() => {
@@ -123,10 +115,7 @@ export class AutosComponent implements OnInit {
     }
   }
 
-
-
   eliminarAuto(id: number): void {
-
     Swal.fire({
       title: 'Seguro quieres eliminar este auto?',
       text: "No podrás revertir esta acción!",
@@ -137,7 +126,6 @@ export class AutosComponent implements OnInit {
       confirmButtonText: 'Sí, borralo!'
     }).then((result) => {
       if (result.isConfirmed) {
-
         this.autoService.eliminarAuto(id).subscribe(() => {
           this.cargarAutos();
           this.limpiarFormulario();
@@ -146,12 +134,8 @@ export class AutosComponent implements OnInit {
             'Su auto ha sido eliminado.',
             'success'
           )
-        }
-
-
-        );
+        });
       } else if (
-        /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
@@ -167,6 +151,4 @@ export class AutosComponent implements OnInit {
     this.autoSeleccionado = new Auto();
     this.modoEdicion = false;
   }
-
-
 }

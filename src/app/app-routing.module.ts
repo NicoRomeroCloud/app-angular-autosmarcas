@@ -20,12 +20,7 @@ const routes: Routes = [
     ]
 
   },
-
-
-
-
   { path: '**', component: NotfoundComponent }
-
 
 ]
 
