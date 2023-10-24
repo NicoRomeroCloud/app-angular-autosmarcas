@@ -31,6 +31,7 @@ export class AutosComponent implements OnInit {
 
   sinDatos = false;
 
+  editandoIndice: number | null = null;
 
   constructor(public router: Router, public autoService: AutoService, public marcaService: MarcaService) { }
 
@@ -49,11 +50,17 @@ export class AutosComponent implements OnInit {
     this.abrirModal('crearAutoModal');
   }
 
-  abrirModalEditarAuto(auto: any) {
+  abrirModalEditarAuto(auto: any, index: number) {
     // Usar los datos del auto existente para la edición
+
     this.autoSeleccionado = { ...auto };
+    this.editandoIndice = index;
+
+    this.autoSeleccionado.marca = this.marcas.find(marca => marca.id === auto.marca.id);
+
     this.modoEdicion = true;
     this.abrirModal('crearAutoModal');
+
   }
 
   abrirModal(modalId: string) {
@@ -94,8 +101,15 @@ export class AutosComponent implements OnInit {
       this.autoService.actualizarAuto(this.autoSeleccionado).subscribe(() => {
         this.cerrarModal('crearAutoModal');
         this.cargarAutos();
+
+        if (this.editandoIndice !== null) {
+          this.autos[this.editandoIndice] = this.autoSeleccionado;
+        }
         this.limpiarFormulario();
+        this.editandoIndice = null;
         Swal.fire('Auto editado', `Su auto fue editado correctamente`, 'success')
+
+
 
       });
     } else {

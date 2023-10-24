@@ -20,8 +20,8 @@
                 <td>
                     {{ marca.nombre }}
                 </td>
-                <td>{{ marca.descripcion }}</td>
-                <td>
+                <td style="width: 80%;">{{ marca.descripcion }}</td>
+                <td style="width: 100%;">
                     <button class="btn btn-primary btn-sm" style="margin-right: 5px;"
                         (click)="abrirModalEditarMarca(marca)">Editar</button>
 
@@ -38,7 +38,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Crear Nueva Marca</h5>
+                <h5 class="modal-title">{{ modoEdicion ? 'Actualizar' : 'Crear Nueva Marca' }}</h5>
                 <button type="button" class="close" (click)="cerrarModal('crearMarcaModal')" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -46,7 +46,7 @@
             <div class="modal-body">
                 <form [formGroup]="marcaForm" (ngSubmit)="createMarca(marcaForm)">
                     <div class="form-group">
-                        <label for="newMarca">Nueva Marca:</label>
+                        <label for="newMarca"> Nueva Marca:</label>
                         <input type="text" class="form-control" id="newMarca" formControlName="nombre"
                             placeholder="Nombre de la nueva marca" />
                         <div class="error"

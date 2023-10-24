@@ -36,7 +36,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Crear Nuevo Auto</h5>
+                    <h5 class="modal-title">{{ modoEdicion ? 'Actualizar' : 'Crear Nuevo Auto' }}</h5>
                     <button type="button" class="close" (click)="cerrarModal('crearAutoModal')" data-dismiss="modal"
                         aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -65,7 +65,6 @@
                                     </option>
                                 </ng-template>
                             </select>
-
                         </div>
                         <button type="button" class="btn btn-secondary" (click)="cerrarModal('crearAutoModal')"
                             style="margin-right: 5px;">Cerrar </button>

@@ -1,7 +1,7 @@
 export class Marca {
 
-    id: number;
-    nombre: string;
-    descripcion: string;
+    id?: number;
+    nombre?: string;
+    descripcion?: string;
 
 }
