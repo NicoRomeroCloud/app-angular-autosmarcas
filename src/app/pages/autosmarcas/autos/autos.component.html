@@ -57,11 +57,18 @@
                         <div class="form-group">
                             <label for="marca">Marca:</label>
                             <select name="marca" [(ngModel)]="autoSeleccionado.marca" class="form-control" required>
-                                <option *ngFor="let marca of marcas" [ngValue]="marca">{{ marca.nombre }}</option>
+                                <ng-container *ngIf="marcas.length > 0; else noMarcasTemplate">
+                                    <option *ngFor="let marca of marcas" [ngValue]="marca">{{ marca.nombre }}</option>
+                                </ng-container>
+                                <ng-template #noMarcasTemplate>
+                                    <option disabled selected value="">No hay marcas disponibles, registra una y vuelve
+                                    </option>
+                                </ng-template>
                             </select>
+
                         </div>
-                        <button type="button" class="btn btn-secondary"
-                            (click)="cerrarModal('crearAutoModal')">Close</button>
+                        <button type="button" class="btn btn-secondary" (click)="cerrarModal('crearAutoModal')"
+                            style="margin-right: 5px;">Cerrar </button>
 
                         <button type="submit" class="btn btn-success"
                             [disabled]="!autoSeleccionado.nombre || !autoSeleccionado.marca || !autoSeleccionado.precio">
