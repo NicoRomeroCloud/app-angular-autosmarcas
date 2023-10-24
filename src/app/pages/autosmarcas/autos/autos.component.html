@@ -1,0 +1,75 @@
+<div class="container">
+    <button class="btn btn-success" (click)="abrirModalCrearAuto()">Crear Nuevo Auto</button>
+
+    <h2 class="my-4">Lista de Autos</h2>
+
+    <div *ngIf="sinDatos">
+        <h1 role="alert"><b>No hay datos disponibles en la base de datos.</b></h1>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let auto of autos">
+                <td>{{ auto.nombre }}</td>
+                <td>{{ auto.marca ? auto.marca.nombre : 'N/A' }}</td>
+                <td>${{ auto.precio | number:'1.2-2' }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" (click)="abrirModalEditarAuto(auto)"
+                        style="margin-right: 5px;">Editar</button>
+                    <button class="btn btn-danger btn-sm" (click)="eliminarAuto(auto.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- Modal para crear un nuevo auto -->
+    <div class="modal" id="crearAutoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear Nuevo Auto</h5>
+                    <button type="button" class="close" (click)="cerrarModal('crearAutoModal')" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form (submit)="guardarAuto()">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" name="nombre" [(ngModel)]="autoSeleccionado.nombre" class="form-control"
+                                placeholder="Nombre del nuevo auto..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Precio:</label>
+                            <input type="number" name="precio" [(ngModel)]="autoSeleccionado.precio"
+                                class="form-control" placeholder="Precio del nuevo auto..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="marca">Marca:</label>
+                            <select name="marca" [(ngModel)]="autoSeleccionado.marca" class="form-control" required>
+                                <option *ngFor="let marca of marcas" [ngValue]="marca">{{ marca.nombre }}</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-secondary"
+                            (click)="cerrarModal('crearAutoModal')">Close</button>
+
+                        <button type="submit" class="btn btn-success"
+                            [disabled]="!autoSeleccionado.nombre || !autoSeleccionado.marca || !autoSeleccionado.precio">
+                            {{ modoEdicion ? 'Actualizar' : 'Crear' }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div id="main-wrapper">
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+
+    <div class="page-wrapper">
+
+        <div class="container-fluid">
+            <!-- MIGAS DE PAN -->
+
+            <app-breadcrumbs></app-breadcrumbs>
+            <!-- RUTAS -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer">
+            © Gracias al profe Fernando Herrera por esta plantilla :)!
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+
+    </div>
+
+
+</div>

@@ -1,0 +1,80 @@
+<div class="container">
+    <button class="btn btn-success" style="margin-bottom: 5px;" (click)="abrirModalCrearMarca()">Crear Nueva
+        Marca</button>
+
+    <h2 class="my-4">Lista de Marcas de Autos</h2>
+    <div *ngIf="sinDatos">
+        <h1 role="alert"><b>No hay datos disponibles en la base de datos.</b></h1>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let marca of marcas">
+                <td>
+                    {{ marca.nombre }}
+                </td>
+                <td>{{ marca.descripcion }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" style="margin-right: 5px;"
+                        (click)="abrirModalEditarMarca(marca)">Editar</button>
+
+                    <button class="btn btn-danger btn-sm" (click)="deleteMarca(marca)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Modal para crear una nueva marca -->
+<div class="modal" id="crearMarcaModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crear Nueva Marca</h5>
+                <button type="button" class="close" (click)="cerrarModal('crearMarcaModal')" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="marcaForm" (ngSubmit)="createMarca(marcaForm)">
+                    <div class="form-group">
+                        <label for="newMarca">Nueva Marca:</label>
+                        <input type="text" class="form-control" id="newMarca" formControlName="nombre"
+                            placeholder="Nombre de la nueva marca" />
+                        <div class="error"
+                            *ngIf="marcaForm.get('nombre').hasError('required') && marcaForm.get('nombre').touched">
+                            El nombre de la marca es obligatorio.
+                        </div>
+                        <div class="error"
+                            *ngIf="marcaForm.get('nombre').hasError('minlength') && marcaForm.get('nombre').touched">
+                            El nombre debe tener al menos 3 caracteres.
+                        </div>
+                        <div class="error"
+                            *ngIf="marcaForm.get('nombre').hasError('maxlength') && marcaForm.get('nombre').touched">
+                            El nombre no debe tener más de 50 caracteres.
+                        </div>
+                    </div>
+
+                    <label style="margin-top: 5px;" for="newMarcaDescripcion">Descripción:</label>
+                    <input type="text" class="form-control" id="newMarcaDescripcion" formControlName="descripcion"
+                        placeholder="Descripción de la nueva marca" />
+                    <div class="error"
+                        *ngIf="marcaForm.get('descripcion').hasError('maxlength') && marcaForm.get('descripcion').touched">
+                        La descripción no debe tener más de 100 caracteres.
+                    </div>
+
+                    <button style="margin-top: 10px; " class="btn btn-primary" type="submit"
+                        [disabled]="marcaForm.invalid">{{ modoEdicion ? 'Actualizar' : 'Crear' }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

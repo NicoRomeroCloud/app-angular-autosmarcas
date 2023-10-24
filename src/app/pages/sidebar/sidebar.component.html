@@ -1,0 +1,57 @@
+<!-- End Topbar header -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="user-profile">
+
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="javascript:void()">My Profile </a></li>
+                        <li><a href="javascript:void()">My Balance</a></li>
+                        <li><a href="javascript:void()">Inbox</a></li>
+                        <li><a href="javascript:void()">Account Setting</a></li>
+                        <li><a href="javascript:void()">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="nav-devider"></li>
+                <li class="nav-small-cap"><b style="color: white;">Inserte datos a la BDD aquí! <svg
+                            xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-down"
+                            width="26" height="26" viewBox="0 0 24 24" stroke-width="2.5" stroke="#ffffff" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M16 15l-4 4" />
+                            <path d="M8 15l4 4" />
+                        </svg></b></li>
+                <li *ngFor="let item of menuItems">
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                        <i [class]="item.icono"></i>
+                        <span class="hide-menu">{{item.titulo}}<span
+                                class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}</span>
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li *ngFor="let subtitem of item.submenu">
+                            <a [routerLink]="subtitem.url" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}">{{subtitem.titulo}} </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
